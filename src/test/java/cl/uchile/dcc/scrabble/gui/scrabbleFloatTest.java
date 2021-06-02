@@ -43,10 +43,6 @@ class scrabbleFloatTest {
         assertEquals(expectedScrStr,scrFloat.toScrString());
     }
     @RepeatedTest(20)
-    void testToScrBool(){
-        assertNull(scrFloat.toScrBool());
-    }
-    @RepeatedTest(20)
     void testToScrFloat(){
         var expectedFloat = new scrabbleFloat(sFloat);
         assertEquals(expectedFloat,scrFloat.toScrFloat());
@@ -58,5 +54,54 @@ class scrabbleFloatTest {
     @RepeatedTest(20)
     void testToScrBin(){
         assertNull(scrFloat.toScrBin());
+    }
+    @RepeatedTest(20)
+    void testAddSubtractMultiplyDivide(){
+        double differentFloat;
+        do {
+            differentFloat = rng.nextDouble();
+        }while (differentFloat == sFloat);
+        scrabbleFloat sFloat2 = new scrabbleFloat(differentFloat);
+        var expectedSum = new scrabbleFloat(sFloat + differentFloat);
+        assertEquals(expectedSum,scrFloat.add(sFloat2));
+        var expectedRes = new scrabbleFloat(sFloat - differentFloat);
+        assertEquals(expectedRes,scrFloat.subtract(sFloat2));
+        var expectedMul = new scrabbleFloat(sFloat * differentFloat);
+        assertEquals(expectedMul,scrFloat.multiply(sFloat2));
+        var expectedDiv = new scrabbleFloat(sFloat / differentFloat);
+        assertEquals(expectedDiv,scrFloat.divide(sFloat2));
+        String menosSieteBin = "1001";
+        String veinteBin = "010100";
+        String menosVeinteBin = "101100";
+        String sieteBin = "0111";
+        String menosDoceBin = "10100";
+        String cincuentaYTresBin ="0110101";
+        var SBins = new scrabbleBinary[]{
+                new scrabbleBinary(sieteBin),
+                new scrabbleBinary(menosSieteBin),
+                new scrabbleBinary(veinteBin),
+                new scrabbleBinary(menosVeinteBin),
+                new scrabbleBinary(menosDoceBin),
+                new scrabbleBinary(cincuentaYTresBin)};
+        for (scrabbleBinary sBin : SBins) {
+            var expectedSum2 = new scrabbleFloat(sBin.toScrFloat().getsFloat() + sFloat);
+            assertEquals(expectedSum2, scrFloat.add(sBin));
+            var expectedRes2 = new scrabbleFloat(sFloat - sBin.toScrFloat().getsFloat());
+            assertEquals(expectedRes2, scrFloat.subtract(sBin));
+            var expectedMul2 = new scrabbleFloat(sFloat * sBin.toScrFloat().getsFloat());
+            assertEquals(expectedMul2, scrFloat.multiply(sBin));
+            var expectedDiv2 = new scrabbleFloat(sFloat / sBin.toScrFloat().getsFloat());
+            assertEquals(expectedDiv2, scrFloat.divide(sBin));
+        }
+         Integer sInt = rng.nextInt(10000);
+        scrabbleInt sI = new scrabbleInt(sInt);
+        var expectedSum3 = new scrabbleFloat(sFloat + sInt);
+        assertEquals(expectedSum3,scrFloat.add(sI));
+        var expectedRes3 = new scrabbleFloat(sFloat - sInt);
+        assertEquals(expectedRes3,scrFloat.subtract(sI));
+        var expectedMul3 = new scrabbleFloat(sFloat * sInt);
+        assertEquals(expectedMul3,scrFloat.multiply(sI));
+        var expectedDiv3 = new scrabbleFloat(sFloat / sInt);
+        assertEquals(expectedDiv3,scrFloat.divide(sI));
     }
 }

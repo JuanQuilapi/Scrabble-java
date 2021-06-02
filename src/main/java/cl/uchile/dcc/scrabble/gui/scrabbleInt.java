@@ -8,7 +8,7 @@ import java.util.Objects;
  * Clase que representa a los numeros enteros del programa Scrabble, con sus transformaciones y operaciones correspondientes
  * y retorna null, a las transformaciones y operaciones que no puede realizar.
  */
-public class scrabbleInt implements ITipos,SNumbers{
+public class scrabbleInt implements SStrings,SNumbers{
     private final Integer sInt;
     /**
      * Constructor que inicializa los enteros de Scrabble, recibe un entero nativo de java.
@@ -17,34 +17,29 @@ public class scrabbleInt implements ITipos,SNumbers{
         this.sInt = sInt;
     }
     /**
-     * Sobreescribe el metodo toString de java, para poder visualizar los test.
+     * Obtiene el entero de clase.
+     *
+     * @return el entero almacenado en la clase.
      */
+    public Integer getsInt() {
+        return sInt;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(this.sInt);
     }
-    /**
-     *  Transforma un Entero de Scrabble a un String de Scrabble.
-     */
+
     @Override
     public scrabbleString toScrString(){
         return new scrabbleString(this.toString());
     }
-    /**
-     *  Transformacion  de un Entero de Scrabble a un Booleano de Scrabble no es valida, retorna null.
-     */
-    @Override
-    public scrabbleBoolean toScrBool(){return null;}
-    /**
-     *  Transforma un Entero de Scrabble a un Float de Scrabble.
-     */
+
     @Override
     public scrabbleFloat toScrFloat(){
         return new scrabbleFloat(this.sInt.doubleValue());
     }
-    /**
-     *  Transforma un Entero de Scrabble a un Entero de Scrabble.
-     */
+
     @Override
     public scrabbleInt toScrInt(){
         return new scrabbleInt(this.sInt);
@@ -71,9 +66,7 @@ public class scrabbleInt implements ITipos,SNumbers{
        }
     return b;
     }
-    /**
-     *  Transforma un Entero de Scrabble a un Binario de Scrabble.
-     */
+
     @Override
     public scrabbleBinary toScrBin(){
     int abso = Math.abs(sInt);
@@ -83,6 +76,93 @@ public class scrabbleInt implements ITipos,SNumbers{
         return new scrabbleBinary(b);
     }
     return new scrabbleBinary(b);
+    }
+    @Override
+    public scrabbleInt addInt(scrabbleInt sI){
+        return new scrabbleInt(sI.getsInt()+this.sInt);
+    }
+
+    @Override
+    public scrabbleFloat addFloat(scrabbleFloat sF){
+        return new scrabbleFloat(sF.getsFloat()+this.toScrFloat().getsFloat());
+    }
+
+    @Override
+    public scrabbleBinary addBin(scrabbleBinary sB){
+        int iB = sB.toScrInt().getsInt();
+        iB += getsInt();
+        return new scrabbleInt(iB).toScrBin();
+    }
+
+    @Override
+    public SNumbers add(SNumbers s){
+        return s.addInt(this);
+    }
+
+    @Override
+    public scrabbleInt subtractInt(scrabbleInt sI){
+        return new scrabbleInt(sI.getsInt() - this.sInt);
+    }
+
+    @Override
+    public scrabbleFloat subtractFloat(scrabbleFloat sF) {
+        return new scrabbleFloat(sF.getsFloat() - this.toScrFloat().getsFloat());
+    }
+
+    @Override
+    public scrabbleBinary subtractBin(scrabbleBinary sB){
+        int iB = sB.toScrInt().getsInt();
+        iB -= getsInt();
+        return new scrabbleInt(iB).toScrBin();
+    }
+
+    @Override
+    public SNumbers subtract(SNumbers s){
+        return s.subtractInt(this);
+    }
+
+    @Override
+    public scrabbleInt multiplyInt(scrabbleInt sI){
+        return new scrabbleInt(sI.getsInt() * this.sInt);
+    }
+
+    @Override
+    public scrabbleFloat multiplyFloat(scrabbleFloat sF) {
+        return new scrabbleFloat(sF.getsFloat() * this.toScrFloat().getsFloat());
+    }
+
+    @Override
+    public scrabbleBinary multiplyBin(scrabbleBinary sB){
+        int iB = sB.toScrInt().getsInt();
+        iB *= getsInt();
+        return new scrabbleInt(iB).toScrBin();
+    }
+
+    @Override
+    public SNumbers multiply(SNumbers s){
+        return s.multiplyInt(this);
+    }
+
+    @Override
+    public scrabbleInt divideInt(scrabbleInt sI){
+        return new scrabbleInt(sI.getsInt() / this.sInt);
+    }
+
+    @Override
+    public scrabbleFloat divideFloat(scrabbleFloat sF) {
+        return new scrabbleFloat(sF.getsFloat() / this.toScrFloat().getsFloat());
+    }
+
+    @Override
+    public scrabbleBinary divideBin(scrabbleBinary sB){
+        int iB = sB.toScrInt().getsInt();
+        iB /= getsInt();
+        return new scrabbleInt(iB).toScrBin();
+    }
+
+    @Override
+    public SNumbers divide(SNumbers s) {
+        return s.divideInt(this);
     }
 
     /**

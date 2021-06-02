@@ -5,47 +5,32 @@ import java.util.Objects;
  * Clase que representa a los Strings del programa Scrabble, con sus transformaciones y operaciones correspondientes
  * y retorna null, a las transformaciones y operaciones que no puede realizar.
  */
-public class scrabbleString implements ITipos{
+public class scrabbleString implements SStrings{
     private final String str;
-
     /**
-     * Constructor que inicializa los strings de Scrabble, recibe un string nativo de java.
+     * Constructor que inicializa los Strings de Scrabble, recibe un string nativo de java.
      */
     public scrabbleString(String str){
         this.str = str;
     }
-    /**
-     * Sobreescribe el metodo toString de java, para poder visualizar los test.
-     */
+
     @Override
     public String toString() {
         return this.str;
     }
-    /**
-     *  Transforma un string de Scrabble a un String de Scrabble.
-     */
+
     @Override
     public scrabbleString toScrString(){return new scrabbleString(this.str);}
     /**
-     * Transformacion de String de Scrabble a Booleano de Scrabble no es valida, retorna null.
+     * Concatena un string de Scrabble con cualquier otro tipo que implementa la interfaz SStrings.
+     *
+     * @return un nuevo string de Scrabble con la concatenacion del string y el valor en forma de string de la otra
+     * clase.
      */
-    @Override
-    public scrabbleBoolean toScrBool(){ return null;}
-    /**
-     * Transformacion de String de Scrabble a FLoat de Scrabble no es valida, retorna null.
-     */
-    @Override
-    public scrabbleFloat toScrFloat(){return null;}
-    /**
-     * Transformacion de String de Scrabble a Entero de Scrabble no es valida, retorna null.
-     */
-    @Override
-    public scrabbleInt toScrInt(){return null;}
-    /**
-     * Transformacion de String de Scrabble a Binario de Scrabble no es valida, retorna null.
-     */
-    @Override
-    public scrabbleBinary toScrBin(){return null;}
+    public scrabbleString add(SStrings s){
+        return new scrabbleString(this.str+s.toString());
+    }
+
     /**
      * Sobreescribe el metodo equals y hashCode de java, para poder realizar los test.
      */
