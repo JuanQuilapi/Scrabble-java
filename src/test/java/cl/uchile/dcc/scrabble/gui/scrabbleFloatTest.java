@@ -51,10 +51,7 @@ class scrabbleFloatTest {
     void testToScrInt(){
         assertNull(scrFloat.toScrInt());
     }
-    @RepeatedTest(20)
-    void testToScrBin(){
-        assertNull(scrFloat.toScrBin());
-    }
+
     @RepeatedTest(20)
     void testAddSubtractMultiplyDivide(){
         double differentFloat;

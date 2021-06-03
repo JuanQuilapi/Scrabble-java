@@ -2,8 +2,7 @@ package cl.uchile.dcc.scrabble.gui;
 
 import java.util.Objects;
 /**
- * Clase que representa a los Strings del programa Scrabble, con sus transformaciones y operaciones correspondientes
- * y retorna null, a las transformaciones y operaciones que no puede realizar.
+ * Clase que representa a los Strings del programa Scrabble, con sus transformaciones y operaciones correspondientes.
  */
 public class scrabbleString implements SStrings{
     private final String str;

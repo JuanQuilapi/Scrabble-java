@@ -81,7 +81,11 @@ import java.util.Objects;
         }
         return -positiveBinToInt(String.valueOf(arrayBin));
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un entero de Scrabble.
+     */
     @Override
     public scrabbleInt toScrInt() {
         if (bitToInt(this.sBinary.charAt(0)) == 0) {
@@ -90,51 +94,87 @@ import java.util.Objects;
             return new scrabbleInt(negativeBinaryToInt(sBinary));
         }
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary toScrBin(){ return new scrabbleBinary(this.sBinary); }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un entero de Scrabble.
+     */
     @Override
     public scrabbleInt addInt(scrabbleInt sI){
         int i = this.toScrInt().getsInt();
         i += sI.getsInt();
         return new scrabbleInt(i);
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat addFloat(scrabbleFloat sF){
         return new scrabbleFloat(sF.getsFloat()+this.toScrFloat().getsFloat());
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary addBin(scrabbleBinary sB){
         int iB = sB.toScrInt().getsInt();
         iB += this.toScrInt().getsInt();
         return new scrabbleInt(iB).toScrBin();
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
+     */
     @Override
     public SNumbers add(SNumbers s){
         return s.addBin(this);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un entero de Scrabble.
+     */
     @Override
-
     public scrabbleInt subtractInt(scrabbleInt sI){
         int i = sI.getsInt() - this.toScrInt().getsInt();
         return new scrabbleInt(i);
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat subtractFloat(scrabbleFloat sF) {
         return new scrabbleFloat(sF.getsFloat() - this.toScrFloat().getsFloat());
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary subtractBin(scrabbleBinary sB){
         int iB = sB.toScrInt().getsInt() - this.toScrInt().getsInt();
         return new scrabbleInt(iB).toScrBin();
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
+     */
     @Override
     public SNumbers subtract(SNumbers s){
         return s.subtractBin(this);
@@ -145,45 +185,77 @@ import java.util.Objects;
         int i = sI.getsInt() * this.toScrInt().getsInt();
         return new scrabbleInt(i);
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat multiplyFloat(scrabbleFloat sF) {
         return new scrabbleFloat(sF.getsFloat() * this.toScrFloat().getsFloat());
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary multiplyBin(scrabbleBinary sB){
         int iB = sB.toScrInt().getsInt() * this.toScrInt().getsInt();
         return new scrabbleInt(iB).toScrBin();
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
+     */
     @Override
     public SNumbers multiply(SNumbers s){
         return s.multiplyBin(this);
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un entero de Scrabble.
+     */
     @Override
     public scrabbleInt divideInt(scrabbleInt sI){
         int i = sI.getsInt() / this.toScrInt().getsInt();
         return new scrabbleInt(i);
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat divideFloat(scrabbleFloat sF) {
         return new scrabbleFloat(sF.getsFloat() / this.toScrFloat().getsFloat());
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary divideBin(scrabbleBinary sB){
         int iB = sB.toScrInt().getsInt() / this.toScrInt().getsInt();
         return new scrabbleInt(iB).toScrBin();
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
+     */
     @Override
     public SNumbers divide(SNumbers s) {
         return s.divideBin(this);
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary neg(){
         var arr = this.sBinary.toCharArray();
@@ -195,7 +267,11 @@ import java.util.Objects;
         }
         return new scrabbleBinary(String.valueOf(arr));
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary andBool(scrabbleBoolean lB){
         if(lB.getBool()){
@@ -231,7 +307,11 @@ import java.util.Objects;
         }
         return new String[]{String.valueOf(b1),String.valueOf(b2)};
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary andBinary(scrabbleBinary lB){
         String[] bins = emparejar(this.sBinary, lB.getsBinary());
@@ -245,12 +325,20 @@ import java.util.Objects;
         }
         return new scrabbleBinary(String.valueOf(arr));
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary and(SLogical l){
       return (scrabbleBinary) l.andBinary(this);
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary orBool(scrabbleBoolean lB){
         if(lB.getBool()){
@@ -261,7 +349,11 @@ import java.util.Objects;
             return this.toScrBin();
         }
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary orBinary(scrabbleBinary lB){
         String[] bins = emparejar(this.sBinary, lB.getsBinary());
@@ -275,7 +367,11 @@ import java.util.Objects;
         }
         return new scrabbleBinary(String.valueOf(arr));
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary or(SLogical l){
         return (scrabbleBinary) l.orBinary(this);

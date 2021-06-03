@@ -7,7 +7,6 @@ import java.util.Objects;
  */
 public class scrabbleFloat implements SStrings,SNumbers{
     private final Double sFloat;
-
     /**
      * Constructor que inicializa los Floats de Scrabble, recibe un double nativo de java.
      */
@@ -44,66 +43,146 @@ public class scrabbleFloat implements SStrings,SNumbers{
     @Override
     public scrabbleBinary toScrBin(){return null;}
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat addInt(scrabbleInt sI){
         return new scrabbleFloat(sI.toScrFloat().getsFloat()+this.sFloat);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat addFloat(scrabbleFloat sF){
         return new scrabbleFloat(sF.getsFloat()+this.sFloat);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return null, operacion invalida.
+     */
     @Override
     public scrabbleFloat addBin(scrabbleBinary sB){
         return null;
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat add(SNumbers s){
         return (scrabbleFloat) s.addFloat(this);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat subtractInt(scrabbleInt sI){
         return new scrabbleFloat(sI.toScrFloat().getsFloat() - this.sFloat);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un decimal de Scrabble.
+     */
     @Override
-    public SNumbers subtractFloat(scrabbleFloat sF) {
+    public scrabbleFloat subtractFloat(scrabbleFloat sF) {
         return new scrabbleFloat(sF.getsFloat() - this.sFloat);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return null, operacion invalida.
+     */
     @Override
     public scrabbleFloat subtractBin(scrabbleBinary sB){
         return null;
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat subtract(SNumbers s){
         return (scrabbleFloat) s.subtractFloat(this);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat multiplyInt(scrabbleInt sI){
         return new scrabbleFloat(sI.toScrFloat().getsFloat() * this.sFloat);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat multiplyFloat(scrabbleFloat sF) {
         return new scrabbleFloat(sF.getsFloat() * this.sFloat);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return null, operacion invalida.
+     */
     @Override
     public scrabbleFloat multiplyBin(scrabbleBinary sB){
         return null;
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat multiply(SNumbers s){
         return (scrabbleFloat) s.multiplyFloat(this);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat divideInt(scrabbleInt sI){
         return new scrabbleFloat( sI.toScrFloat().getsFloat() / this.sFloat);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat divideFloat(scrabbleFloat sF) {
         return new scrabbleFloat(sF.getsFloat() / this.sFloat);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return null, opreacion invalida.
+     */
     @Override
     public scrabbleFloat divideBin(scrabbleBinary sB){
         return null;
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return un decimal de Scrabble.
+     */
     @Override
     public scrabbleFloat divide(SNumbers s) {
         return (scrabbleFloat) s.divideFloat(this);

@@ -3,8 +3,7 @@ package cl.uchile.dcc.scrabble.gui;
 import java.util.Arrays;
 import java.util.Objects;
 /**
- * Clase que representa a los Booleanos del programa Scrabble, con sus transformaciones y operaciones correspondientes
- * y retorna null, a las transformaciones y operaciones que no puede realizar.
+ * Clase que representa a los Booleanos del programa Scrabble, con sus transformaciones y operaciones correspondientes.
  */
 public class scrabbleBoolean implements SStrings,SLogical {
     private final boolean Bool;
@@ -40,15 +39,29 @@ public class scrabbleBoolean implements SStrings,SLogical {
     public scrabbleBoolean toScrBool(){
         return new scrabbleBoolean(this.Bool);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return la negacion del booleano actual.
+     */
     @Override
     public scrabbleBoolean neg(){
         return new scrabbleBoolean(!this.Bool);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return un booleano de Scrabble.
+     */
     @Override
     public scrabbleBoolean andBool(scrabbleBoolean lB){
         return new scrabbleBoolean(lB.getBool() && this.Bool);
     }
-
+    /**
+     * {@inheritDoc}
+     *
+     * @return un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary andBinary(scrabbleBinary lB) {
         if(this.Bool){
@@ -59,14 +72,29 @@ public class scrabbleBoolean implements SStrings,SLogical {
             return new scrabbleBinary(String.valueOf(arr));
         }
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return Una clase que implemente la interfaz SLogical(boolean o binario)
+     */
     @Override
     public SLogical and(SLogical l){
         return l.andBool(this);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un booleano de Scrabble.
+     */
     @Override
     public scrabbleBoolean orBool(scrabbleBoolean lB){
         return new scrabbleBoolean(lB.getBool() || this.Bool);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return Un binario de Scrabble.
+     */
     @Override
     public scrabbleBinary orBinary(scrabbleBinary lB){
         if(this.Bool){
@@ -77,6 +105,11 @@ public class scrabbleBoolean implements SStrings,SLogical {
             return lB.toScrBin();
         }
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @return Una clase que implemente la interfaz SLogical(boolean o binario)
+     */
     @Override
     public SLogical or(SLogical l){
         return l.orBool(this);
