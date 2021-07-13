@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  * <Complete here with the details of the implemented application>
  *
  * @author Ignacio Slater Muñoz.
- * @author <Juan Igancio Quilapi Jordan>
+ * @author <Juan Ignacio Quilapi Jordan>
  */
 public class Scrabble extends Application {
 

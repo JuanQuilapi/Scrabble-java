@@ -1,15 +1,18 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.SLogical;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.SNumbers;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.scrabbleBoolean;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.scrabbleString;
+import cl.uchile.dcc.scrabble.gui.operaciones.Hojas;
+
 import java.util.Objects;
 /**
  * Clase que representa a los numeros enteros del programa Scrabble, con sus transformaciones y
  * operaciones correspondientes y retorna null, a las transformaciones y operaciones que no puede
  * realizar.
  */
-public class scrabbleInt implements SStrings, SNumbers {
+public class scrabbleInt implements SNumbers{
   private final Integer sInt;
   /** Constructor que inicializa los enteros de Scrabble, recibe un entero nativo de java. */
   public scrabbleInt(Integer sInt) {
@@ -110,8 +113,7 @@ public class scrabbleInt implements SStrings, SNumbers {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers add(SNumbers s) {
-    return s.addInt(this);
+  public SNumbers add(Hojas s) { return (SNumbers) s.addInt(this);
   }
   /**
    * {@inheritDoc}
@@ -148,8 +150,8 @@ public class scrabbleInt implements SStrings, SNumbers {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers subtract(SNumbers s) {
-    return s.subtractInt(this);
+  public SNumbers subtract(Hojas s) {
+    return (SNumbers) s.subtractInt(this);
   }
   /**
    * {@inheritDoc}
@@ -186,8 +188,8 @@ public class scrabbleInt implements SStrings, SNumbers {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers multiply(SNumbers s) {
-    return s.multiplyInt(this);
+  public SNumbers multiply(Hojas s) {
+    return (SNumbers) s.multiplyInt(this);
   }
   /**
    * {@inheritDoc}
@@ -224,8 +226,8 @@ public class scrabbleInt implements SStrings, SNumbers {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers divide(SNumbers s) {
-    return s.divideInt(this);
+  public SNumbers divide(Hojas s) {
+    return (SNumbers) s.divideInt(this);
   }
 
   /** Sobreescribe el metodo equals y hashCode de java, para poder realizar los test. */

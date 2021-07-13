@@ -1,4 +1,10 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers;
+
+import cl.uchile.dcc.scrabble.gui.Scrabbles.SLogical;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.SNumbers;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.scrabbleBoolean;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.scrabbleString;
+import cl.uchile.dcc.scrabble.gui.operaciones.Hojas;
 
 import java.util.Objects;
 /**
@@ -6,7 +12,7 @@ import java.util.Objects;
  * operaciones correspondientes y retorna null, a las transformaciones y operaciones que no puede
  * realizar.
  */
-public class scrabbleFloat implements SStrings, SNumbers {
+public class scrabbleFloat implements SNumbers {
   private final Double sFloat;
   /** Constructor que inicializa los Floats de Scrabble, recibe un double nativo de java. */
   public scrabbleFloat(Double sFloat) {
@@ -79,7 +85,7 @@ public class scrabbleFloat implements SStrings, SNumbers {
    * @return Un decimal de Scrabble.
    */
   @Override
-  public scrabbleFloat add(SNumbers s) {
+  public scrabbleFloat add(Hojas s) {
     return (scrabbleFloat) s.addFloat(this);
   }
   /**
@@ -115,7 +121,7 @@ public class scrabbleFloat implements SStrings, SNumbers {
    * @return un decimal de Scrabble.
    */
   @Override
-  public scrabbleFloat subtract(SNumbers s) {
+  public scrabbleFloat subtract(Hojas s) {
     return (scrabbleFloat) s.subtractFloat(this);
   }
   /**
@@ -151,7 +157,7 @@ public class scrabbleFloat implements SStrings, SNumbers {
    * @return un decimal de Scrabble.
    */
   @Override
-  public scrabbleFloat multiply(SNumbers s) {
+  public scrabbleFloat multiply(Hojas s) {
     return (scrabbleFloat) s.multiplyFloat(this);
   }
   /**
@@ -172,22 +178,20 @@ public class scrabbleFloat implements SStrings, SNumbers {
   public scrabbleFloat divideFloat(scrabbleFloat sF) {
     return new scrabbleFloat(sF.getsFloat() / this.sFloat);
   }
-  /**
-   * {@inheritDoc}
-   *
-   * @return null, opreacion invalida.
-   */
+
   @Override
-  public scrabbleFloat divideBin(scrabbleBinary sB) {
+  public SNumbers divideBin(scrabbleBinary sB) {
     return null;
   }
+
+
   /**
    * {@inheritDoc}
    *
    * @return un decimal de Scrabble.
    */
   @Override
-  public scrabbleFloat divide(SNumbers s) {
+  public scrabbleFloat divide(Hojas s) {
     return (scrabbleFloat) s.divideFloat(this);
   }
 
@@ -205,4 +209,5 @@ public class scrabbleFloat implements SStrings, SNumbers {
     }
     return false;
   }
+
 }

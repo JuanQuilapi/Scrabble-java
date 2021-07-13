@@ -1,5 +1,9 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers;
 
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleBinary;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleFloat;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleInt;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.scrabbleString;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;

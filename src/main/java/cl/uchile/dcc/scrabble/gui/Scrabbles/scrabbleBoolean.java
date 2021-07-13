@@ -1,4 +1,9 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.gui.Scrabbles;
+
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleBinary;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleFloat;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleInt;
+import cl.uchile.dcc.scrabble.gui.operaciones.Hojas;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -6,7 +11,7 @@ import java.util.Objects;
  * Clase que representa a los Booleanos del programa Scrabble, con sus transformaciones y
  * operaciones correspondientes.
  */
-public class scrabbleBoolean implements SStrings, SLogical {
+public class scrabbleBoolean implements SLogical {
   private final boolean Bool;
   /** Constructor que inicializa los Booleanos de Scrabble, recibe un boolean nativo de java. */
   public scrabbleBoolean(boolean Bool) {
@@ -77,7 +82,7 @@ public class scrabbleBoolean implements SStrings, SLogical {
    * @return Una clase que implemente la interfaz SLogical(boolean o binario)
    */
   @Override
-  public SLogical and(SLogical l) {
+  public SLogical and(Hojas l) {
     return l.andBool(this);
   }
   /**
@@ -110,7 +115,7 @@ public class scrabbleBoolean implements SStrings, SLogical {
    * @return Una clase que implemente la interfaz SLogical(boolean o binario)
    */
   @Override
-  public SLogical or(SLogical l) {
+  public SLogical or(Hojas l) {
     return l.orBool(this);
   }
   /** Sobreescribe el metodo equals y hashCode de java, para poder realizar los test. */

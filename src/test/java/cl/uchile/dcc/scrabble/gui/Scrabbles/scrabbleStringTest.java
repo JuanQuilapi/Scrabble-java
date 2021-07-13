@@ -1,10 +1,14 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.gui.Scrabbles;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import cl.uchile.dcc.scrabble.gui.Scrabbles.*;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleBinary;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleFloat;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleInt;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 

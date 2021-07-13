@@ -1,18 +1,20 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers;
+
+import cl.uchile.dcc.scrabble.gui.Scrabbles.*;
+import cl.uchile.dcc.scrabble.gui.operaciones.Hojas;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 /**
  * Clase que representa a los numeros binarios del programa Scrabble, con sus transformaciones y
  * operaciones correspondientes y retorna null, a las transformaciones y operaciones que no puede
  * realizar.
  */
-public class scrabbleBinary implements SStrings, SNumbers, SLogical {
+public class scrabbleBinary implements SNumbers, SLogical {
   private final String sBinary;
   /**
    * Constructor que inicializa los Binarios de Scrabble, recibe un Strings con 1's y 0's y verifica
-   * que esta bien escritos(?).(CHEECK)
+   * que esta bien escritos.
    */
   public scrabbleBinary(String sBinary) {
     this.sBinary = sBinary;
@@ -130,7 +132,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    */
   @Override
   public scrabbleFloat addFloat(scrabbleFloat sF) {
-    return new scrabbleFloat(sF.getsFloat() + this.toScrFloat().getsFloat());
+    return new scrabbleFloat(sF.getsFloat() + this.toScrInt().getsInt());
   }
   /**
    * {@inheritDoc}
@@ -149,7 +151,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers add(SNumbers s) {
+  public SNumbers add(Hojas s) {
     return s.addBin(this);
   }
   /**
@@ -187,8 +189,8 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers subtract(SNumbers s) {
-    return s.subtractBin(this);
+  public SNumbers subtract(Hojas s) {
+    return (SNumbers) s.subtractBin(this);
   }
 
   @Override
@@ -221,8 +223,8 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers multiply(SNumbers s) {
-    return s.multiplyBin(this);
+  public SNumbers multiply(Hojas s) {
+    return (SNumbers) s.multiplyBin(this);
   }
   /**
    * {@inheritDoc}
@@ -259,8 +261,8 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers divide(SNumbers s) {
-    return s.divideBin(this);
+  public SNumbers divide(Hojas s) {
+    return (SNumbers) s.divideBin(this);
   }
   /**
    * {@inheritDoc}
@@ -347,7 +349,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un binario de Scrabble.
    */
   @Override
-  public scrabbleBinary and(SLogical l) {
+  public scrabbleBinary and(Hojas l) {
     return (scrabbleBinary) l.andBinary(this);
   }
   /**
@@ -389,9 +391,10 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un binario de Scrabble.
    */
   @Override
-  public scrabbleBinary or(SLogical l) {
+  public scrabbleBinary or(Hojas l) {
     return (scrabbleBinary) l.orBinary(this);
   }
+
 
   @Override
   public int hashCode() {
