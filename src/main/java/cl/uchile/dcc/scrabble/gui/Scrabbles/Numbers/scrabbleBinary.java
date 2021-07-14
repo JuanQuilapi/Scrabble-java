@@ -1,18 +1,24 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers;
+
+import cl.uchile.dcc.scrabble.gui.Factory.SBinFac;
+import cl.uchile.dcc.scrabble.gui.Factory.SFloatFac;
+import cl.uchile.dcc.scrabble.gui.Factory.SIntFac;
+import cl.uchile.dcc.scrabble.gui.Factory.SStringFac;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.*;
+import cl.uchile.dcc.scrabble.gui.operaciones.Hojas;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 /**
  * Clase que representa a los numeros binarios del programa Scrabble, con sus transformaciones y
  * operaciones correspondientes y retorna null, a las transformaciones y operaciones que no puede
  * realizar.
  */
-public class scrabbleBinary implements SStrings, SNumbers, SLogical {
+public class scrabbleBinary implements SNumbers, SLogical {
   private final String sBinary;
   /**
    * Constructor que inicializa los Binarios de Scrabble, recibe un Strings con 1's y 0's y verifica
-   * que esta bien escritos(?).(CHEECK)
+   * que esta bien escritos.
    */
   public scrabbleBinary(String sBinary) {
     this.sBinary = sBinary;
@@ -30,12 +36,12 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
   public String toString() {
     return String.valueOf(this.sBinary);
   }
-
+  /** {@inheritDoc} */
   @Override
   public scrabbleString toScrString() {
-    return new scrabbleString(this.sBinary);
+    return SStringFac.make(this.sBinary);
   }
-
+  /** {@inheritDoc} */
   @Override
   public scrabbleFloat toScrFloat() {
     return this.toScrInt().toScrFloat();
@@ -98,9 +104,9 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
   @Override
   public scrabbleInt toScrInt() {
     if (bitToInt(this.sBinary.charAt(0)) == 0) {
-      return new scrabbleInt(positiveBinToInt(sBinary));
+      return SIntFac.make(positiveBinToInt(sBinary));
     } else {
-      return new scrabbleInt(negativeBinaryToInt(sBinary));
+      return SIntFac.make(negativeBinaryToInt(sBinary));
     }
   }
   /**
@@ -110,7 +116,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    */
   @Override
   public scrabbleBinary toScrBin() {
-    return new scrabbleBinary(this.sBinary);
+    return SBinFac.make(this.sBinary);
   }
   /**
    * {@inheritDoc}
@@ -121,7 +127,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
   public scrabbleInt addInt(scrabbleInt sI) {
     int i = this.toScrInt().getsInt();
     i += sI.getsInt();
-    return new scrabbleInt(i);
+    return SIntFac.make(i);
   }
   /**
    * {@inheritDoc}
@@ -130,7 +136,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    */
   @Override
   public scrabbleFloat addFloat(scrabbleFloat sF) {
-    return new scrabbleFloat(sF.getsFloat() + this.toScrFloat().getsFloat());
+    return SFloatFac.make(sF.getsFloat() + this.toScrInt().getsInt());
   }
   /**
    * {@inheritDoc}
@@ -141,7 +147,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
   public scrabbleBinary addBin(scrabbleBinary sB) {
     int iB = sB.toScrInt().getsInt();
     iB += this.toScrInt().getsInt();
-    return new scrabbleInt(iB).toScrBin();
+    return SIntFac.make(iB).toScrBin();
   }
   /**
    * {@inheritDoc}
@@ -149,7 +155,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers add(SNumbers s) {
+  public SNumbers add(Hojas s) {
     return s.addBin(this);
   }
   /**
@@ -160,7 +166,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
   @Override
   public scrabbleInt subtractInt(scrabbleInt sI) {
     int i = sI.getsInt() - this.toScrInt().getsInt();
-    return new scrabbleInt(i);
+    return SIntFac.make(i);
   }
   /**
    * {@inheritDoc}
@@ -169,7 +175,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    */
   @Override
   public scrabbleFloat subtractFloat(scrabbleFloat sF) {
-    return new scrabbleFloat(sF.getsFloat() - this.toScrFloat().getsFloat());
+    return SFloatFac.make(sF.getsFloat() - this.toScrFloat().getsFloat());
   }
   /**
    * {@inheritDoc}
@@ -179,7 +185,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
   @Override
   public scrabbleBinary subtractBin(scrabbleBinary sB) {
     int iB = sB.toScrInt().getsInt() - this.toScrInt().getsInt();
-    return new scrabbleInt(iB).toScrBin();
+    return SIntFac.make(iB).toScrBin();
   }
   /**
    * {@inheritDoc}
@@ -187,14 +193,14 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers subtract(SNumbers s) {
+  public SNumbers subtract(Hojas s) {
     return s.subtractBin(this);
   }
 
   @Override
   public scrabbleInt multiplyInt(scrabbleInt sI) {
     int i = sI.getsInt() * this.toScrInt().getsInt();
-    return new scrabbleInt(i);
+    return SIntFac.make(i);
   }
   /**
    * {@inheritDoc}
@@ -203,7 +209,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    */
   @Override
   public scrabbleFloat multiplyFloat(scrabbleFloat sF) {
-    return new scrabbleFloat(sF.getsFloat() * this.toScrFloat().getsFloat());
+    return SFloatFac.make(sF.getsFloat() * this.toScrFloat().getsFloat());
   }
   /**
    * {@inheritDoc}
@@ -213,7 +219,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
   @Override
   public scrabbleBinary multiplyBin(scrabbleBinary sB) {
     int iB = sB.toScrInt().getsInt() * this.toScrInt().getsInt();
-    return new scrabbleInt(iB).toScrBin();
+    return SIntFac.make(iB).toScrBin();
   }
   /**
    * {@inheritDoc}
@@ -221,7 +227,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers multiply(SNumbers s) {
+  public SNumbers multiply(Hojas s) {
     return s.multiplyBin(this);
   }
   /**
@@ -232,7 +238,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
   @Override
   public scrabbleInt divideInt(scrabbleInt sI) {
     int i = sI.getsInt() / this.toScrInt().getsInt();
-    return new scrabbleInt(i);
+    return SIntFac.make(i);
   }
   /**
    * {@inheritDoc}
@@ -241,7 +247,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    */
   @Override
   public scrabbleFloat divideFloat(scrabbleFloat sF) {
-    return new scrabbleFloat(sF.getsFloat() / this.toScrFloat().getsFloat());
+    return SFloatFac.make(sF.getsFloat() / this.toScrFloat().getsFloat());
   }
   /**
    * {@inheritDoc}
@@ -251,7 +257,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
   @Override
   public scrabbleBinary divideBin(scrabbleBinary sB) {
     int iB = sB.toScrInt().getsInt() / this.toScrInt().getsInt();
-    return new scrabbleInt(iB).toScrBin();
+    return SIntFac.make(iB).toScrBin();
   }
   /**
    * {@inheritDoc}
@@ -259,7 +265,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un numero que implemente la interfaz SNumbers(int, float o binario)
    */
   @Override
-  public SNumbers divide(SNumbers s) {
+  public SNumbers divide(Hojas s) {
     return s.divideBin(this);
   }
   /**
@@ -277,7 +283,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
         arr[i] = '0';
       }
     }
-    return new scrabbleBinary(String.valueOf(arr));
+    return SBinFac.make(String.valueOf(arr));
   }
   /**
    * {@inheritDoc}
@@ -291,7 +297,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
     } else {
       var arr = this.sBinary.toCharArray();
       Arrays.fill(arr, '0');
-      return new scrabbleBinary(String.valueOf(arr));
+      return SBinFac.make(String.valueOf(arr));
     }
   }
 
@@ -347,7 +353,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un binario de Scrabble.
    */
   @Override
-  public scrabbleBinary and(SLogical l) {
+  public scrabbleBinary and(Hojas l) {
     return (scrabbleBinary) l.andBinary(this);
   }
   /**
@@ -360,7 +366,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
     if (lB.getBool()) {
       var arr = this.sBinary.toCharArray();
       Arrays.fill(arr, '1');
-      return new scrabbleBinary(String.valueOf(arr));
+      return SBinFac.make(String.valueOf(arr));
     } else {
       return this.toScrBin();
     }
@@ -381,7 +387,7 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
         arr[i] = '1';
       }
     }
-    return new scrabbleBinary(String.valueOf(arr));
+    return SBinFac.make(String.valueOf(arr));
   }
   /**
    * {@inheritDoc}
@@ -389,9 +395,10 @@ public class scrabbleBinary implements SStrings, SNumbers, SLogical {
    * @return Un binario de Scrabble.
    */
   @Override
-  public scrabbleBinary or(SLogical l) {
+  public scrabbleBinary or(Hojas l) {
     return (scrabbleBinary) l.orBinary(this);
   }
+
 
   @Override
   public int hashCode() {

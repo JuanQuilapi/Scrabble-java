@@ -1,4 +1,12 @@
-package cl.uchile.dcc.scrabble.gui;
+package cl.uchile.dcc.scrabble.gui.Scrabbles;
+
+import cl.uchile.dcc.scrabble.gui.Factory.SBinFac;
+import cl.uchile.dcc.scrabble.gui.Factory.SBoolFac;
+import cl.uchile.dcc.scrabble.gui.Factory.SStringFac;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleBinary;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleFloat;
+import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleInt;
+import cl.uchile.dcc.scrabble.gui.operaciones.Hojas;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -6,7 +14,7 @@ import java.util.Objects;
  * Clase que representa a los Booleanos del programa Scrabble, con sus transformaciones y
  * operaciones correspondientes.
  */
-public class scrabbleBoolean implements SStrings, SLogical {
+public class scrabbleBoolean implements SLogical {
   private final boolean Bool;
   /** Constructor que inicializa los Booleanos de Scrabble, recibe un boolean nativo de java. */
   public scrabbleBoolean(boolean Bool) {
@@ -28,7 +36,7 @@ public class scrabbleBoolean implements SStrings, SLogical {
 
   @Override
   public scrabbleString toScrString() {
-    return new scrabbleString(this.toString());
+    return SStringFac.make(this.toString());
   }
   /**
    * Transforma un booleano de Scrabble a un Booleano de Scrabble.
@@ -36,7 +44,7 @@ public class scrabbleBoolean implements SStrings, SLogical {
    * @return un nuevo booleano de Scrabble,copia del anterior.
    */
   public scrabbleBoolean toScrBool() {
-    return new scrabbleBoolean(this.Bool);
+    return SBoolFac.make(this.Bool);
   }
   /**
    * {@inheritDoc}
@@ -45,7 +53,7 @@ public class scrabbleBoolean implements SStrings, SLogical {
    */
   @Override
   public scrabbleBoolean neg() {
-    return new scrabbleBoolean(!this.Bool);
+    return SBoolFac.make(!this.Bool);
   }
   /**
    * {@inheritDoc}
@@ -54,7 +62,7 @@ public class scrabbleBoolean implements SStrings, SLogical {
    */
   @Override
   public scrabbleBoolean andBool(scrabbleBoolean lB) {
-    return new scrabbleBoolean(lB.getBool() && this.Bool);
+    return SBoolFac.make(lB.getBool() && this.Bool);
   }
   /**
    * {@inheritDoc}
@@ -68,7 +76,7 @@ public class scrabbleBoolean implements SStrings, SLogical {
     } else {
       var arr = lB.getsBinary().toCharArray();
       Arrays.fill(arr, '0');
-      return new scrabbleBinary(String.valueOf(arr));
+      return SBinFac.make(String.valueOf(arr));
     }
   }
   /**
@@ -77,7 +85,7 @@ public class scrabbleBoolean implements SStrings, SLogical {
    * @return Una clase que implemente la interfaz SLogical(boolean o binario)
    */
   @Override
-  public SLogical and(SLogical l) {
+  public SLogical and(Hojas l) {
     return l.andBool(this);
   }
   /**
@@ -87,7 +95,7 @@ public class scrabbleBoolean implements SStrings, SLogical {
    */
   @Override
   public scrabbleBoolean orBool(scrabbleBoolean lB) {
-    return new scrabbleBoolean(lB.getBool() || this.Bool);
+    return SBoolFac.make(lB.getBool() || this.Bool);
   }
   /**
    * {@inheritDoc}
@@ -99,7 +107,7 @@ public class scrabbleBoolean implements SStrings, SLogical {
     if (this.Bool) {
       var arr = lB.getsBinary().toCharArray();
       Arrays.fill(arr, '1');
-      return new scrabbleBinary(String.valueOf(arr));
+      return SBinFac.make(String.valueOf(arr));
     } else {
       return lB.toScrBin();
     }
@@ -110,7 +118,7 @@ public class scrabbleBoolean implements SStrings, SLogical {
    * @return Una clase que implemente la interfaz SLogical(boolean o binario)
    */
   @Override
-  public SLogical or(SLogical l) {
+  public SLogical or(Hojas l) {
     return l.orBool(this);
   }
   /** Sobreescribe el metodo equals y hashCode de java, para poder realizar los test. */
