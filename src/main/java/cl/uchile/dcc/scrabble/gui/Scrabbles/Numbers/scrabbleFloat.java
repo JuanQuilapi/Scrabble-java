@@ -1,5 +1,7 @@
 package cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers;
 
+import cl.uchile.dcc.scrabble.gui.Factory.SFloatFac;
+import cl.uchile.dcc.scrabble.gui.Factory.SStringFac;
 import cl.uchile.dcc.scrabble.gui.Scrabbles.SLogical;
 import cl.uchile.dcc.scrabble.gui.Scrabbles.SNumbers;
 import cl.uchile.dcc.scrabble.gui.Scrabbles.scrabbleBoolean;
@@ -31,22 +33,22 @@ public class scrabbleFloat implements SNumbers {
   public String toString() {
     return String.valueOf(this.sFloat);
   }
-
+  /** {@inheritDoc} */
   @Override
   public scrabbleString toScrString() {
-    return new scrabbleString(this.toString());
+    return SStringFac.make(this.toString());
   }
-
+  /** {@inheritDoc} */
   @Override
   public scrabbleFloat toScrFloat() {
-    return new scrabbleFloat(this.sFloat);
+    return SFloatFac.make(this.sFloat);
   }
-
+  /** {@inheritDoc} */
   @Override
   public scrabbleInt toScrInt() {
     return null;
   }
-
+  /** {@inheritDoc} */
   @Override
   public scrabbleBinary toScrBin() {
     return null;
@@ -59,7 +61,7 @@ public class scrabbleFloat implements SNumbers {
    */
   @Override
   public scrabbleFloat addInt(scrabbleInt sI) {
-    return new scrabbleFloat(sI.toScrFloat().getsFloat() + this.sFloat);
+    return SFloatFac.make(sI.toScrFloat().getsFloat() + this.sFloat);
   }
   /**
    * {@inheritDoc}
@@ -68,7 +70,7 @@ public class scrabbleFloat implements SNumbers {
    */
   @Override
   public scrabbleFloat addFloat(scrabbleFloat sF) {
-    return new scrabbleFloat(sF.getsFloat() + this.sFloat);
+    return SFloatFac.make(sF.getsFloat() + this.sFloat);
   }
   /**
    * {@inheritDoc}
@@ -95,7 +97,7 @@ public class scrabbleFloat implements SNumbers {
    */
   @Override
   public scrabbleFloat subtractInt(scrabbleInt sI) {
-    return new scrabbleFloat(sI.toScrFloat().getsFloat() - this.sFloat);
+    return SFloatFac.make(sI.toScrFloat().getsFloat() - this.sFloat);
   }
   /**
    * {@inheritDoc}
@@ -104,7 +106,7 @@ public class scrabbleFloat implements SNumbers {
    */
   @Override
   public scrabbleFloat subtractFloat(scrabbleFloat sF) {
-    return new scrabbleFloat(sF.getsFloat() - this.sFloat);
+    return SFloatFac.make(sF.getsFloat() - this.sFloat);
   }
   /**
    * {@inheritDoc}
@@ -131,7 +133,7 @@ public class scrabbleFloat implements SNumbers {
    */
   @Override
   public scrabbleFloat multiplyInt(scrabbleInt sI) {
-    return new scrabbleFloat(sI.toScrFloat().getsFloat() * this.sFloat);
+    return SFloatFac.make(sI.toScrFloat().getsFloat() * this.sFloat);
   }
   /**
    * {@inheritDoc}
@@ -140,7 +142,7 @@ public class scrabbleFloat implements SNumbers {
    */
   @Override
   public scrabbleFloat multiplyFloat(scrabbleFloat sF) {
-    return new scrabbleFloat(sF.getsFloat() * this.sFloat);
+    return SFloatFac.make(sF.getsFloat() * this.sFloat);
   }
   /**
    * {@inheritDoc}
@@ -167,7 +169,7 @@ public class scrabbleFloat implements SNumbers {
    */
   @Override
   public scrabbleFloat divideInt(scrabbleInt sI) {
-    return new scrabbleFloat(sI.toScrFloat().getsFloat() / this.sFloat);
+    return SFloatFac.make(sI.toScrFloat().getsFloat() / this.sFloat);
   }
   /**
    * {@inheritDoc}
@@ -176,14 +178,13 @@ public class scrabbleFloat implements SNumbers {
    */
   @Override
   public scrabbleFloat divideFloat(scrabbleFloat sF) {
-    return new scrabbleFloat(sF.getsFloat() / this.sFloat);
+    return SFloatFac.make(sF.getsFloat() / this.sFloat);
   }
 
   @Override
   public SNumbers divideBin(scrabbleBinary sB) {
     return null;
   }
-
 
   /**
    * {@inheritDoc}
@@ -209,5 +210,4 @@ public class scrabbleFloat implements SNumbers {
     }
     return false;
   }
-
 }

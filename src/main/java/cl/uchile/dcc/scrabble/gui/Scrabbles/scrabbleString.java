@@ -3,7 +3,6 @@ package cl.uchile.dcc.scrabble.gui.Scrabbles;
 import cl.uchile.dcc.scrabble.gui.Factory.SStringFac;
 import cl.uchile.dcc.scrabble.gui.operaciones.Hojas;
 
-
 import java.util.Objects;
 /**
  * Clase que representa a los Strings del programa Scrabble, con sus transformaciones y operaciones
@@ -20,7 +19,7 @@ public class scrabbleString implements ScrType {
   public String toString() {
     return this.str;
   }
-
+  /** {@inheritDoc} */
   @Override
   public scrabbleString toScrString() {
     return SStringFac.make(this.str);

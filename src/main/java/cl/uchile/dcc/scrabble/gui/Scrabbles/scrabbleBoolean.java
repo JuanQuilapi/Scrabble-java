@@ -1,5 +1,8 @@
 package cl.uchile.dcc.scrabble.gui.Scrabbles;
 
+import cl.uchile.dcc.scrabble.gui.Factory.SBinFac;
+import cl.uchile.dcc.scrabble.gui.Factory.SBoolFac;
+import cl.uchile.dcc.scrabble.gui.Factory.SStringFac;
 import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleBinary;
 import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleFloat;
 import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleInt;
@@ -33,7 +36,7 @@ public class scrabbleBoolean implements SLogical {
 
   @Override
   public scrabbleString toScrString() {
-    return new scrabbleString(this.toString());
+    return SStringFac.make(this.toString());
   }
   /**
    * Transforma un booleano de Scrabble a un Booleano de Scrabble.
@@ -41,7 +44,7 @@ public class scrabbleBoolean implements SLogical {
    * @return un nuevo booleano de Scrabble,copia del anterior.
    */
   public scrabbleBoolean toScrBool() {
-    return new scrabbleBoolean(this.Bool);
+    return SBoolFac.make(this.Bool);
   }
   /**
    * {@inheritDoc}
@@ -50,7 +53,7 @@ public class scrabbleBoolean implements SLogical {
    */
   @Override
   public scrabbleBoolean neg() {
-    return new scrabbleBoolean(!this.Bool);
+    return SBoolFac.make(!this.Bool);
   }
   /**
    * {@inheritDoc}
@@ -59,7 +62,7 @@ public class scrabbleBoolean implements SLogical {
    */
   @Override
   public scrabbleBoolean andBool(scrabbleBoolean lB) {
-    return new scrabbleBoolean(lB.getBool() && this.Bool);
+    return SBoolFac.make(lB.getBool() && this.Bool);
   }
   /**
    * {@inheritDoc}
@@ -73,7 +76,7 @@ public class scrabbleBoolean implements SLogical {
     } else {
       var arr = lB.getsBinary().toCharArray();
       Arrays.fill(arr, '0');
-      return new scrabbleBinary(String.valueOf(arr));
+      return SBinFac.make(String.valueOf(arr));
     }
   }
   /**
@@ -92,7 +95,7 @@ public class scrabbleBoolean implements SLogical {
    */
   @Override
   public scrabbleBoolean orBool(scrabbleBoolean lB) {
-    return new scrabbleBoolean(lB.getBool() || this.Bool);
+    return SBoolFac.make(lB.getBool() || this.Bool);
   }
   /**
    * {@inheritDoc}
@@ -104,7 +107,7 @@ public class scrabbleBoolean implements SLogical {
     if (this.Bool) {
       var arr = lB.getsBinary().toCharArray();
       Arrays.fill(arr, '1');
-      return new scrabbleBinary(String.valueOf(arr));
+      return SBinFac.make(String.valueOf(arr));
     } else {
       return lB.toScrBin();
     }
