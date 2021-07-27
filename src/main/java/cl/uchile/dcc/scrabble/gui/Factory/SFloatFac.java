@@ -1,6 +1,6 @@
 package cl.uchile.dcc.scrabble.gui.Factory;
 
-import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleFloat;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.Numbers.scrabbleFloat;
 
 import java.util.Hashtable;
 /**

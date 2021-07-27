@@ -1,10 +1,10 @@
-package cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers;
+package cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.Numbers;
 
 import cl.uchile.dcc.scrabble.gui.Factory.SBinFac;
 import cl.uchile.dcc.scrabble.gui.Factory.SFloatFac;
 import cl.uchile.dcc.scrabble.gui.Factory.SIntFac;
 import cl.uchile.dcc.scrabble.gui.Factory.SStringFac;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.*;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.*;
 import cl.uchile.dcc.scrabble.gui.operaciones.Hojas;
 
 import java.util.Arrays;

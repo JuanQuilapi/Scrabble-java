@@ -1,14 +1,13 @@
 package cl.uchile.dcc.scrabble.gui.operaciones;
 
 import cl.uchile.dcc.scrabble.gui.Factory.*;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.*;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.Numbers.*;
 
-import cl.uchile.dcc.scrabble.gui.Scrabbles.*;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.Enumeration;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
