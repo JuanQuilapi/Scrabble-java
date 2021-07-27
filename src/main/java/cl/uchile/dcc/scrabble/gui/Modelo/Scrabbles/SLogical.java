@@ -1,6 +1,6 @@
-package cl.uchile.dcc.scrabble.gui.Scrabbles;
+package cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles;
 
-import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleBinary;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.Numbers.scrabbleBinary;
 import cl.uchile.dcc.scrabble.gui.operaciones.Hojas;
 
 public interface SLogical extends ScrType{

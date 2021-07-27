@@ -1,12 +1,12 @@
 package cl.uchile.dcc.scrabble.gui.operaciones;
 
-import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleBinary;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleFloat;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers.scrabbleInt;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.SLogical;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.SNumbers;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.scrabbleBoolean;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.scrabbleString;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.Numbers.scrabbleBinary;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.Numbers.scrabbleFloat;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.Numbers.scrabbleInt;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.SLogical;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.SNumbers;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.scrabbleBoolean;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.scrabbleString;
 
 /**
  * clase que contiene todas las operaciones posibles entre las hojas del arbol, todos estos metodos

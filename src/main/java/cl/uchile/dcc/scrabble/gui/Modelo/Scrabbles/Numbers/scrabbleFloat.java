@@ -1,11 +1,9 @@
-package cl.uchile.dcc.scrabble.gui.Scrabbles.Numbers;
+package cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.Numbers;
 
 import cl.uchile.dcc.scrabble.gui.Factory.SFloatFac;
 import cl.uchile.dcc.scrabble.gui.Factory.SStringFac;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.SLogical;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.SNumbers;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.scrabbleBoolean;
-import cl.uchile.dcc.scrabble.gui.Scrabbles.scrabbleString;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.SNumbers;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.scrabbleString;
 import cl.uchile.dcc.scrabble.gui.operaciones.Hojas;
 
 import java.util.Objects;

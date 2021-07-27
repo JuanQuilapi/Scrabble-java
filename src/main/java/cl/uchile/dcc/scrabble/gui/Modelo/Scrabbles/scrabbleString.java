@@ -1,4 +1,4 @@
-package cl.uchile.dcc.scrabble.gui.Scrabbles;
+package cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles;
 
 import cl.uchile.dcc.scrabble.gui.Factory.SStringFac;
 import cl.uchile.dcc.scrabble.gui.operaciones.Hojas;

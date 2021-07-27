@@ -1,6 +1,6 @@
 package cl.uchile.dcc.scrabble.gui.Factory;
 
-import cl.uchile.dcc.scrabble.gui.Scrabbles.scrabbleBoolean;
+import cl.uchile.dcc.scrabble.gui.Modelo.Scrabbles.scrabbleBoolean;
 
 import java.util.Hashtable;
 /**
