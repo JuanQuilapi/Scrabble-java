@@ -13,15 +13,15 @@ _University of Chile_.
 
 ---
 * MODO DE EJECUCION(TAREA 3 JAVAFX):
-  * para esta tarea elegi crear la interfaz visual, lamentablemente no la pude terminar correctamente, ni conectar con el controlador,
-    por lo que solo crea el arbol de las operaciones y con muchos errores, para ejecutar la aplicacion hay que correr el archivo "Scrabble" en 
+  * para esta tarea elegi crear la interfaz visual, para ejecutar la aplicacion hay que correr el archivo "Scrabble" en 
     main.java.cl.uchile.dcc.scrabble.gui en esta interfaz tenemos:
     * un Boton con opciones para elegir si agregar una operacion binaria(como add), una operacion unitaria(como neg) o una constante(como el entero 5).
-    Depediendo de la eleccion aparecera una nueva caja de eleccion para especificar el tipo que se quiere agregar al arbol,(no alcance a definir las operaciones unitarias),
-      en caso de elegir agregar una constante,se debera eligir el tipo y luego ingresar en texto el tipo elegido.
+    Depediendo de la eleccion aparecera una nueva caja de eleccion para especificar el tipo que se quiere agregar al arbol,,
+      en caso de elegir agregar una constante,se debera eligir el tipo y luego ingresar en texto el tipo elegido,cuidado com ingresar datos validos, ya que en caso
+      contrario puede haber errores.
   * Ademas hay un boton para empezar denuevo el arbol.
-  * no agregue el boton de resultado por falta de tiempo.
-  *los textos no estan en los globos por falta de tiempo.
+  * el boton resultado despliega un texto en medio de la pantalla con el resultado o un mensaje de error.
+  *en la tarea 3 se agrego un controlador y se hizo la vista.
 * Tarea 1:
     * Se crearon 5 clases que representan a cada tipo de Scrabble requerido(__scrabbleString,scrabbleBoolean,
       scrabbleInt,scrabbleFloat y scrabbleBinary__) y 3 interfaces para poder realizar las operaciones, todas estas se encuentran en el paquete Scrabbles:

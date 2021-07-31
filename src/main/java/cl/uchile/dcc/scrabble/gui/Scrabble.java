@@ -1,6 +1,7 @@
 package cl.uchile.dcc.scrabble.gui;
 import cl.uchile.dcc.scrabble.gui.Controller.astController;
 
+import java.awt.Color;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -36,6 +37,7 @@ public class Scrabble extends Application {
   private static final HBox[] arbol2 = {new HBox(), new HBox()};
   private static final HBox[] text2 = {new HBox(),new HBox()};
   private static final HBox[] arbol3 = {new HBox(), new HBox(), new HBox(), new HBox()};
+  private static Integer[] hijosBan2 = {0,0};
   private static Integer[] hijosBan3 = {0,0,0,0};
   private static Integer[] hijosBan4 = {0,0,0,0,0,0,0,0};
   private static final HBox[] text3 = {new HBox(), new HBox(), new HBox(), new HBox()};
@@ -49,6 +51,8 @@ public class Scrabble extends Application {
   private static final HBox hb2 = new HBox();
   private static final HBox hb3 = new HBox();
   private static final HBox hb4 = new HBox();
+  private static final HBox hb5 = new HBox();
+  private static final HBox hb6 = new HBox();
   private static int cont = 0;
   private static int cont2 = 0;
   private static int cont3 = 0;
@@ -61,6 +65,7 @@ public class Scrabble extends Application {
 
   private static final Button b1 = new Button("Seleccione operacion");
   private static final Button b2 = new Button("Seleccione Tipo");
+  private static final Button b3 = new Button("Seleccione operacion");
 
   @Override
   public void start(@NotNull Stage stage) throws FileNotFoundException {
@@ -107,13 +112,13 @@ public class Scrabble extends Application {
     // choiceBoxes config
     cb2.setItems(
         FXCollections.observableArrayList(
-            "Agregar Constante", "Agregar Operacion Binaria", "Agregar operacion Unitaria"));
+            "Agregar Constante", "Agregar Operacion Binaria", "Agregar Operacion Unitaria"));
     cb.setItems(
         FXCollections.observableArrayList(
-            "Add", "Sub", "Mult", "Div", new Separator(), "And", "Or", new Separator(), "Const"));
+            "Add", "Sub", "Mult", "Div", new Separator(), "And", "Or"));
     cb3.setItems(
         FXCollections.observableArrayList(
-            "Neg", new Separator(), "ToBin", "ToBool", "ToFlt", "ToInt", "ToStr"));
+            "Neg", new Separator(), "ToBin", "ToBool", "ToFloat", "ToInt", "ToStr"));
     cb4.setItems(
         FXCollections.observableArrayList("Booleano", "Decimal", "Entero", "Binario", "String"));
 
@@ -121,16 +126,20 @@ public class Scrabble extends Application {
     hb2.setVisible(false);
     hb3.setVisible(false);
     hb4.setVisible(true);
+    hb5.setVisible(false);
+    hb6.setVisible(false);
     Scene scene = new Scene(root, width, height);
 
     var background = new ImageView(new Image(new FileInputStream(RESOURCE_PATH + "Fondo.png")));
     root.getChildren().add(background);
     root.getChildren().add(setupTextField());
     root.getChildren().add(setupCBox3());
+    root.getChildren().add(setupCBox4());
     root.getChildren().add(setupCBox2());
     root.getChildren().add(setupCBox());
     root.getChildren().add(resetButton());
     root.getChildren().add(resultButton());
+    root.getChildren().add(hb6);
     root.getChildren().add(arbol1);
     for (int i = 0; i < 2; i++) {
       root.getChildren().addAll(arbol2[i],text2[i]);
@@ -176,7 +185,9 @@ public class Scrabble extends Application {
       if (tipo.equals("Agregar Constante")) {
         hb2.setVisible(true);
       }
-
+      if (tipo.equals("Agregar Operacion Unitaria")) {
+        hb5.setVisible(true);
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -188,6 +199,14 @@ public class Scrabble extends Application {
     hb1.setLayoutY(400);
     b1.setOnAction(Scrabble::creandoA);
     return hb1;
+  }
+
+  private @NotNull HBox setupCBox4() {
+    hb5.getChildren().addAll(cb3, b3);
+    hb5.setLayoutX(1150);
+    hb5.setLayoutY(400);
+    b3.setOnAction(Scrabble::creandoS);
+    return hb5;
   }
 
   private @NotNull HBox setupCBox3() {
@@ -216,7 +235,6 @@ public class Scrabble extends Application {
   }
 
   private static void reset(ActionEvent event) {
-    System.out.println(cont+" , "+cont2+" , "+cont3+", "+cont4+"\n");
     try {
       arbol1.getChildren().clear();
       text1.getChildren().clear();
@@ -239,7 +257,9 @@ public class Scrabble extends Application {
       cont4 = 0;
       hijosBan3 = new Integer[]{0, 0, 0, 0};
       hijosBan4 = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0};
+      hijosBan2 = new Integer[]{0,0};
       astController.reset();
+      hb6.setVisible(false);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -254,8 +274,17 @@ public class Scrabble extends Application {
   }
 
   private static void result(ActionEvent event) {
+    var resultado = astController.getResultado().toString() ;
+      Label res = new Label("Resultado= " + resultado);
     try{
-      System.out.println(astController.getResultado());
+      hb6.setLayoutX(300);
+      hb6.setLayoutY(700);
+      if (astController.getResultado() != null) {
+        hb6.getChildren().add(res);
+      }else{
+        Label error = new Label("Error, el arbol esta mal armado, o se ingreso mal un valor");
+      }
+      hb6.setVisible(true);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -291,8 +320,13 @@ public class Scrabble extends Application {
         arbol2[cont2].getChildren().add(rama2);
         text2[cont2].getChildren().add(label);
         astController.AddOpScr(tipo);
-        cont2++;
+        if (hijosBan2[1] == 1) {
+          cont2++;
+          astController.AddOpScr("Null");
+        }
+      cont2++;
       }
+
       if (cont < 1) {
         var rama = creandoNodos("copa.png");
         arbol1.getChildren().add(rama);
@@ -343,16 +377,21 @@ public class Scrabble extends Application {
         cont3++;
       }
       if (cont2 < 2 && cont >= 1) {
-        var rama2 = creandoNodos("Const2.png");
-        arbol2[cont2].getChildren().add(rama2);
-        text2[cont2].getChildren().add(label);
-        astController.AddConst(tipo,valor);
-        hijosBan3[cont2*2] = 1;
-        hijosBan3[cont2*2+1] = 1;
-        hijosBan4[cont2*2] = 1;
-        hijosBan4[cont2*2+1] = 1;
-        hijosBan4[cont2*2+2] = 1;
-        hijosBan4[cont2*2+3] = 1;
+
+          var rama2 = creandoNodos("Const2.png");
+          arbol2[cont2].getChildren().add(rama2);
+          text2[cont2].getChildren().add(label);
+          astController.AddConst(tipo, valor);
+          hijosBan3[cont2 * 2] = 1;
+          hijosBan3[cont2 * 2 + 1] = 1;
+          hijosBan4[cont2 * 2] = 1;
+          hijosBan4[cont2 * 2 + 1] = 1;
+          hijosBan4[cont2 * 2 + 2] = 1;
+          hijosBan4[cont2 * 2 + 3] = 1;
+        if (hijosBan2[1] == 1) {
+          cont2++;
+          astController.AddOpScr("Null");
+        }
         cont2++;
       }
       if (cont < 1) {
@@ -367,6 +406,61 @@ public class Scrabble extends Application {
       }
       hb3.setVisible(false);
     } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
+  private static void creandoS(ActionEvent event) {
+    hb4.setVisible(true);
+    var tipo = cb3.getValue().toString();
+    var label = new Label(tipo);
+    try{
+      if (cont3 < 4 && cont2 >= 2 && cont >= 1) {
+        var rama3 = creandoNodos("prueba22.png");
+        while (hijosBan3[cont3] == 1 && cont3 < 3){
+          cont3++;
+          astController.AddOpScr("Null");
+        }
+        if(hijosBan3[cont3] == 0){
+          arbol3[cont3].getChildren().add(rama3);
+          text3[cont3].getChildren().add(label);
+          astController.AddOpScr(tipo);
+          hijosBan4[cont3*2+1] = 1;
+        }else{astController.AddOpScr("Null");}
+        cont3++;
+      }
+      if (cont2 < 2 && cont >= 1) {
+        var rama2 = creandoNodos("doble11.png");
+
+        if (hijosBan2[cont2] == 0) {
+          arbol2[cont2].getChildren().add(rama2);
+          text2[cont2].getChildren().add(label);
+          astController.AddOpScr(tipo);
+          hijosBan3[cont2 * 2 + 1] = 1;
+          hijosBan4[cont2 * 2 + 2] = 1;
+          hijosBan4[cont2 * 2 + 3] = 1;
+          if (hijosBan2[1] == 1) {
+            cont2++;
+            astController.AddOpScr("Null");
+          }
+        }
+        cont2++;
+      }
+      if (cont < 1) {
+        var rama = creandoNodos("copaS.png");
+        arbol1.getChildren().add(rama);
+        text1.getChildren().add(label);
+        astController.AddOpScr(tipo);
+        cont++;
+        hijosBan2[1] = 1;
+        hijosBan3[2] = 1;
+        hijosBan3[3] = 1;
+        hijosBan4[4] = 1;
+        hijosBan4[5] = 1;
+        hijosBan4[6] = 1;
+        hijosBan4[7] = 1;
+      }
+      hb5.setVisible(false);
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }
